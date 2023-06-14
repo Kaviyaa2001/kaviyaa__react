@@ -6,6 +6,8 @@ import styled from 'styled-components';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import PreviewArea from "./PreviewArea";
 
+import "../styles/DragandDrop.css";
+
 // a little function to help us with reordering the result
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
@@ -43,7 +45,7 @@ const move = (source, destination, droppableSource, droppableDestination) => {
 };
 
 const Content = styled.div`
-    margin-right: 200px;
+    margin-right: 500px;
 `;
 
 const Item = styled.div`
@@ -88,19 +90,34 @@ const List = styled.div`
     border-radius: 3px;
     flex: 0 0 150px;
     font-family: sans-serif;
+    position:relative;
+    float:left;
 `;
 
 const Kiosk = styled(List)`
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 200px;
+    position: relative;
+    width:33.33%;
+    height:100%;
+    float:left;
+    top:0;
+    bottom:0;
+   
+    
+   
 `;
 
 const Container = styled(List)`
     margin: 0.5rem 0.5rem 1.5rem;
     background: #ccc;
+    column-count:3;
+`;
+
+const Container_1 = styled(List)`
+width:33.33%;
+height:100%;
+position:relative;
+left:20%;
+
 `;
 
 const Notice = styled.div`
@@ -120,14 +137,16 @@ const Button = styled.button`
     align-items: center;
     align-content: center;
     justify-content: center;
-    margin: 0.5rem;
+    margin: 0px;
     padding: 0.5rem;
     color: #000;
-    border: 1px solid #ddd;
+    
     background: #fff;
     border-radius: 3px;
     font-size: 1rem;
     cursor: pointer;
+    top:50%;
+    left:50%;
 `;
 
 const ButtonText = styled.div`
@@ -151,7 +170,7 @@ const ITEMS = [
     id: uuid(),
     content: 'Rotate'
   },
- 
+  
 ];
 
 class DragAndDrop extends Component {
@@ -209,7 +228,7 @@ class DragAndDrop extends Component {
   // But in this example everything is just done in one place for simplicity
   render() {
     return (
-      <div>
+     <> <div >
         <DragDropContext onDragEnd={this.onDragEnd}>
           <Droppable droppableId="ITEMS" isDropDisabled={true}>
             {(provided, snapshot) => (
@@ -221,6 +240,9 @@ class DragAndDrop extends Component {
                   <Draggable key={item.id} draggableId={item.id} index={index}>
                     {(provided, snapshot) => (
                       <React.Fragment>
+                
+
+                        
                         <Item
                           ref={provided.innerRef}
                           {...provided.draggableProps}
@@ -230,6 +252,7 @@ class DragAndDrop extends Component {
                         >
                           {item.content}
                         </Item>
+                        
                         {snapshot.isDragging && <Clone>{item.content}</Clone>}
                       </React.Fragment>
                     )}
@@ -248,6 +271,7 @@ class DragAndDrop extends Component {
               </svg>
               <ButtonText>Add List</ButtonText>
             </Button>
+           
             {Object.keys(this.state).map((list, i) => {
               console.log('==> list', list);
               return (
@@ -297,8 +321,10 @@ class DragAndDrop extends Component {
             })}
           </Content>
         </DragDropContext>
-        <PreviewArea items={ITEMS} />
-      </div>
+        <Container_1><PreviewArea items={ITEMS} /></Container_1>
+        
+        
+      </div></>
     );
   }
 }
