@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import CatSprite from "./CatSprite";
 import '../styles/newOutput.css';
 
 const NewPreview = ({ items }) => {
     const [xPosition, setXPosition] = useState(0);
-    const [yPosition, setYPosition] = useState(0);
+    const [yPosition] = useState(0);
     const [rotation, setRotation] = useState(0);
     const [diablePlay, setDisablePlay] = useState(false);
     console.log('==> items', items);
