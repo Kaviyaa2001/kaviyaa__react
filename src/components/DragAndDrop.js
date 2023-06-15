@@ -112,7 +112,7 @@ const Container = styled(List)`
     column-count:3;
 `;
 
-const Container_1 = styled(List)`
+const Container1 = styled(List)`
 width:33.33%;
 height:100%;
 position:relative;
@@ -321,7 +321,7 @@ class DragAndDrop extends Component {
             })}
           </Content>
         </DragDropContext>
-        <Container_1><PreviewArea items={ITEMS} /></Container_1>
+        <Container1><PreviewArea items={ITEMS} /></Container1>
         
         
       </div>
